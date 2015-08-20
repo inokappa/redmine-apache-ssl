@@ -37,7 +37,7 @@ $ ./generate-certfiles.sh
 ### docker build
 
 ```sh
-$ docker build -i your_name/image_name .
+$ docker build --no-cache=false -t your_name/image_name .
 ```
 
 ***
