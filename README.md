@@ -44,6 +44,14 @@ $ docker build --no-cache=false -t your_name/image_name .
 
 ### docker run
 
+use docker0 bridge.
+
 ```sh
 $ docker run -d --link ${redmine_name}:${redmine_alias} --name=apache -p 80:80 -p 443:443 your_name/image_name
+```
+
+use host network.
+
+```sh
+$ docker run -d --net=host --name=apache --env=REDMINE_PORT_80_TCP_ADDR=`docker inspect --format="{{ .NetworkSettings.IPAddress }}" redmine` --log-driver=syslog --log-opt syslog-facility=daemon --log-opt syslog-tag="apache" inokappa/apache
 ```
